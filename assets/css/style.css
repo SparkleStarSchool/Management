@@ -1,0 +1,39 @@
+body{
+    color:#4c3d81;
+}
+.layout{
+    margin-top: 50px;
+}
+#title{
+    font-size: 1.2em;
+    font-weight: 500;
+    font-style: italic;
+    display: inline-block;
+    white-space:nowrap;
+}
+#titleImage{
+    padding-right: 5px;
+    margin-bottom: 10px;
+}
+.hello{
+    display: flex;
+    justify-content:space-between;
+    margin: 0 0.5em;
+}
+.hello p{
+    font-size: 1.3em;
+    font-weight: 500;
+    margin: 0;
+}
+.hello button{
+    background-color:#4c3d81;
+    color:white;
+    border: none;
+    border-radius:0.3em;
+    font-size: 0.9em;
+}
+.hello button:hover{
+    background-color:lightgray ;
+    color: rgb(255, 132, 0) ;
+}
+

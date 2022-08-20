@@ -1,0 +1,1 @@
+# Management system for SparkleStarSchool website
