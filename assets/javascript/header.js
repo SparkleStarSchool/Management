@@ -5,8 +5,12 @@ $(document).ready(()=>{
     
     let userName = localStorage.getItem('currentUserName')
     $('.hello p').text('Hi, '+userName)
+    // home page
+    $('.hello #home').on('click',()=>{
+        window.location.href='dashboard.html'
+    })
     // logout button
-    $('.hello button').on('click',()=>{
+    $('.hello #logout').on('click',()=>{
         console.log("in logout....")
         auth.signOut().then(() => { 
             // remove from localStorage

@@ -1,4 +1,6 @@
 $(document).ready(()=>{
+    // show adding new course
+    $('.adding-block').css('display', 'block')
     // get subject from db
     db.ref('subject').get().then((snapshot)=>{
         for(let [key, value] of Object.entries(snapshot.val())){
@@ -9,6 +11,98 @@ $(document).ready(()=>{
         }
     })
 
+    // get course name from db
+    db.ref("course").get().then((snapshot)=>{
+        for(let [key, value] of Object.entries(snapshot.val())){
+            $option = $(`<option value=${key}>${value.name}</option>`)
+            $('#course-name').append($option)
+        }
+    })
+
+    // add event for course name dropdown
+    $('#course-name').on('change',()=>{
+        let courseID=$("#course-name").val()
+        if(courseID!=''){
+            // hide adding new course
+            $('.adding-block').css('display', 'none')
+            //get course infor
+            db.ref("course").child(courseID).get().then((snapshot)=>{
+                let courseInfor = snapshot.val()
+                console.log(courseInfor)
+                $('#course-code').val(courseInfor.code)
+                $('#course-subject').val(courseInfor.subjectID)
+                $('#course-grade').val(courseInfor.grade)
+                $('#course-outline').val(courseInfor.outline)
+            })
+        }else{
+            // show adding new course
+            $('.adding-block').css('display', 'block')
+        }
+    })
+
     // add new course
+    $('.add-btn').on('click',()=>{
+        let courseName = $('#course-add').val()
+        if(courseName != ''){
+            let courseID = getRandomKey()
+            db.ref("course")
+            .child(courseID)
+            .set({ name: courseName})
+            .then(() => {
+                // refresh page
+                location.reload();
+            })
+        }
+    })
+
+    // save course infor
+    $('#course-save').on('click',()=>{
+        let courseID = $('#course-name').val()
+        let code = $('#course-code').val()
+        let subjectID = $('#course-subject').val()
+        let grade = $('#course-grade').val()
+        let outline = $('#course-outline').val()
+        db.ref("course").child(courseID).update({code: code, 
+                                                 outline: outline, 
+                                                 grade: grade, 
+                                                 subjectID: subjectID})
+        .then(()=>{
+            // refresh page
+            location.reload();
+        })
+    })
+
+    // delete achievement and teaching before delete course
+
+    // open the delete modal
+    $('#course-delete').on('click', ()=>{
+        let courseID = $('#course-name').val()
+        if(courseID!=''){
+            $("#deleteModal").find(".modal-body").find("p").text("确定删除此课程吗?")
+            $("#deleteModal").modal();
+        }
+    })
     
+    // delete course
+    $('#okButton').on('click',()=>{
+        let courseID = $('#course-name').val()
+        db.ref("course").child(courseID).remove().then(()=>{
+            // refresh page
+            location.reload();
+        })
+    })
+
 })
+
+// generate random key
+const getRandomKey = () => {
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const length = 28;
+    let randomStr = "";
+    for (let i = 0; i < length; i++) {
+      const randomNum = Math.floor(Math.random() * characters.length);
+      randomStr += characters[randomNum];
+    }
+    return randomStr;
+  };

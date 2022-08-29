@@ -33,7 +33,10 @@
                     <p id="title">启明双语学校</p>
                     <div class="row hello">
                         <p></p>
-                        <button>退出</button>
+                        <div>
+                          <button id="home">主页</button>
+                          <button id="logout">退出</button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4"></div>
@@ -46,11 +49,10 @@
                     <label for="course-name">课程名称: </label>
                     <select class="form-control" id="course-name">
                       <option value="">选择</option>
-                      <option value="">数学3年级</option>
                     </select>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row adding-block">
                   <div class="col">
                     <div class="row">
                       <div class="col">
@@ -113,8 +115,26 @@
               </div>
               <div class="col-md-4"></div>
             </div>
-            
-        </div>    
+        </div>
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" data-backdrop="static">
+          <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title"></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <p></p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-warning" data-dismiss="modal" id="okButton">确定</button>
+                      <button type="button" class="btn btn-warning" data-dismiss="modal">取消</button>
+                  </div>
+              </div>
+          </div>
+        </div> 
     </main>
 
   <script src="assets/javascript/course.js"></script>
