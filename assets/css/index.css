@@ -1,20 +1,20 @@
 .password,.email{
-    margin:2em 0;
+    margin:2rem 0;
 }
 .login-btn{
     display: flex;
     justify-content: end;
 }
 .form label{
-    font-size: 1.em;
+    font-size: 1rem;
     font-weight: 500;
 }
 .form button{
     background-color:#4c3d81;
     color:white;
     border: none;
-    border-radius:0.3em;
-    padding:0.6em;
+    border-radius:0.3rem;
+    padding:0.6rem;
 }
 
 .form button:hover{

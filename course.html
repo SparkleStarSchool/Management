@@ -21,7 +21,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <script src="assets/javascript/firebase.js"></script>
 
-    <title>Dashboard</title>
+    <title>课程设置</title>
   </head>
   <body>
     <main>
@@ -30,16 +30,88 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     <img id="titleImage" src="assets/images/logo.png" alt="">
-                    <p id="title">Sparkle Star Bilingual School</p>
+                    <p id="title">启明双语学校</p>
                     <div class="row hello">
                         <p></p>
-                        <button>Logout</button>
+                        <button>退出</button>
                     </div>
                 </div>
                 <div class="col-md-4"></div>
             </div>
-            <div class="row">
-              <p>This is course setting</p>
+            <div class="row setting">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <div class="row">
+                  <div class="col">
+                    <label for="course-name">课程名称: </label>
+                    <select class="form-control" id="course-name">
+                      <option value="">选择</option>
+                      <option value="">数学3年级</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="row">
+                      <div class="col">
+                        <label for="course-add">添加课程: </label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-10">
+                        <input type="text" class="form-control" id="course-add">
+                      </div>
+                      <div class="col-md-2">
+                        <p class="add-btn">添加</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row section-layout">
+                  <div class="col-lg-4">
+                    <label for="course-code">课程编码:</label>
+                    <input type="text" class="form-control" id="course-code">
+                  </div>
+                  <div class="col-lg-4">
+                    <label for="course-grade">适用年级: </label>
+                    <select class="form-control" id="course-grade">
+                      <option value="">选择</option>
+                      <option value="K">K</option>
+                      <option value="G1">G1</option>
+                      <option value="G2">G2</option>
+                      <option value="G3">G3</option>
+                      <option value="G4">G4</option>
+                      <option value="G5">G5</option>
+                      <option value="G6">G6</option>
+                      <option value="G7">G7</option>
+                      <option value="G8">G8</option>
+                      <option value="G9">G9</option>
+                      <option value="G10">G10</option>
+                      <option value="G11">G11</option>
+                      <option value="G12">G12</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-4">
+                    <label for="course-subject">所属科目: </label>
+                    <select class="form-control" id="course-subject">
+                      <option value="">选择</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <label for="course-outline">课程大纲:</label>
+                    <textarea rows="8" class="form-control" id="course-outline"></textarea>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col button-layout">
+                    <button class="btn btn-warning button-style" id="course-save">保存</button>
+                    <button class="btn btn-warning button-style" id="course-delete">删除</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4"></div>
             </div>
             
         </div>    

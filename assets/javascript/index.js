@@ -12,8 +12,13 @@ $(document).ready(()=>{
         }else{
             auth.signInWithEmailAndPassword(emailInput, passwordInput)
             .then(() => {
-                localStorage.setItem('currentUserName', auth.currentUser.email)
-                window.location.href='dashboard.html'
+                console.log(auth.currentUser.uid)
+                let userID = auth.currentUser.uid
+                db.ref('user').child(userID).get().then((snapshot)=>{
+                    localStorage.setItem('currentUserName', snapshot.val().name)
+                    console.log(snapshot.val().name)
+                    window.location.href='dashboard.html'
+                })
             })
             .catch(() => {
                 alert("Could not log in, please input again");

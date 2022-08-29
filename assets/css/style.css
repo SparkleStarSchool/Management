@@ -1,13 +1,13 @@
 body{
     color:#4c3d81;
+    font-family: "STHeiti";
 }
 .layout{
     margin-top: 50px;
 }
 #title{
-    font-size: 1.2em;
+    font-size: 1.5rem;
     font-weight: 500;
-    font-style: italic;
     display: inline-block;
     white-space:nowrap;
 }
@@ -18,10 +18,10 @@ body{
 .hello{
     display: flex;
     justify-content:space-between;
-    margin: 0 0.5em;
+    margin: 0;
 }
 .hello p{
-    font-size: 1.3em;
+    font-size: 1.3rem;
     font-weight: 500;
     margin: 0;
 }
@@ -29,8 +29,8 @@ body{
     background-color:#4c3d81;
     color:white;
     border: none;
-    border-radius:0.3em;
-    font-size: 0.9em;
+    border-radius:0.3rem;
+    font-size: 0.9rem;
 }
 .hello button:hover{
     background-color:lightgray ;
