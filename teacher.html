@@ -41,11 +41,69 @@
                 </div>
                 <div class="col-md-4"></div>
             </div>
-            <div class="row">
-              <p>This is teacher setting</p>
+            <div class="row setting">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <div class="row">
+                  <div class="col">
+                    <label for="teacher-name">教师姓名: </label>
+                    <select class="form-control" id="teacher-name">
+                      <option value="">选择</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row adding-block">
+                  <div class="col">
+                    <div class="row">
+                      <div class="col">
+                        <label for="teacher-add">添加教师: </label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-10">
+                        <input type="text" class="form-control" id="teacher-add">
+                      </div>
+                      <div class="col-md-2">
+                        <p class="add-btn">添加</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <label for="teacher-outline">教师简介:</label>
+                    <textarea rows="8" class="form-control" id="teacher-outline"></textarea>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col button-layout">
+                    <button class="btn btn-warning button-style" id="teacher-save">保存</button>
+                    <button class="btn btn-warning button-style" id="teacher-delete">删除</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4"></div>
             </div>
-            
-        </div>    
+        </div>   
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" data-backdrop="static">
+          <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title"></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <p></p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-warning" data-dismiss="modal" id="okButton">确定</button>
+                      <button type="button" class="btn btn-warning" data-dismiss="modal">取消</button>
+                  </div>
+              </div>
+          </div>
+        </div>  
     </main>
 
   <script src="assets/javascript/teacher.js"></script>

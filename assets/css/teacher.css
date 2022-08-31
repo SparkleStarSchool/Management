@@ -1,0 +1,33 @@
+.row{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.setting{
+    margin-top: 2rem;
+}
+.setting textarea{
+    width: 100%;
+}
+#teacher-name{
+    width: 82%;
+}
+.add-btn{
+    font-weight: 800;
+    margin: 0;
+    padding: 0.3rem 0;
+    white-space:nowrap;
+}
+.add-btn:hover {
+    color:rgb(255, 132, 0) ;
+    cursor: pointer;
+}
+.button-layout{
+    display: flex;
+    justify-content: end;
+}
+.button-style{
+    color:#4c3d81;
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}

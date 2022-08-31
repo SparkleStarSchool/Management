@@ -37,6 +37,10 @@ $(document).ready(()=>{
         }else{
             // show adding new course
             $('.adding-block').css('display', 'block')
+            $('#course-code').val('')
+            $('#course-subject').val('')
+            $('#course-grade').val('')
+            $('#course-outline').val('')
         }
     })
 
@@ -72,7 +76,7 @@ $(document).ready(()=>{
         })
     })
 
-    // delete achievement and teaching before delete course
+    // check if need to delete teaching before delete course
 
     // open the delete modal
     $('#course-delete').on('click', ()=>{
