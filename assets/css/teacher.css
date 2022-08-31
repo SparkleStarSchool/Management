@@ -1,12 +1,8 @@
-.row{
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+.row-layout > .row{
+    margin-top: 1.3rem;
+    margin-bottom: 1.3rem;
 }
-
-.setting{
-    margin-top: 2rem;
-}
-.setting textarea{
+.row-layout textarea{
     width: 100%;
 }
 #teacher-name{
