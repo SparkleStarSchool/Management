@@ -5,9 +5,11 @@
 .row-layout textarea{
     width: 100%;
 }
-#teacher-name{
+
+#teaching-name{
     width: 82%;
 }
+
 .add-btn{
     font-weight: 800;
     margin: 0;
@@ -18,24 +20,12 @@
     color:rgb(255, 132, 0) ;
     cursor: pointer;
 }
-.url-input{
-    display: flex;
-    align-items:center;
+.section-layout label{
+    white-space:nowrap;
+}
+.section-layout .col-lg-6{
+    margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-}
-.style-input{
-    display: inline;
-    width: 95%;
-    margin-right: 0.5rem;
-}
-
-.deleteImage:hover, 
-.deleteVideo:hover,
-.addImage:hover,
-.addVideo:hover{
-    color: red;
-    cursor: pointer;
-    scale: 1.2;
 }
 .button-layout{
     display: flex;
@@ -46,4 +36,3 @@
     margin-left: 1.5rem;
     margin-bottom: 1.5rem;
 }
-
