@@ -5,7 +5,7 @@
 .row-layout textarea{
     width: 100%;
 }
-#teacher-name{
+.name-dropdown{
     width: 82%;
 }
 .add-btn{
@@ -18,6 +18,22 @@
     color:rgb(255, 132, 0) ;
     cursor: pointer;
 }
+
+.button-layout{
+    display: flex;
+    justify-content: end;
+}
+.button-style{
+    color:#4c3d81;
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.warningborder{
+    outline: none;
+    border: 1rem, solid red;
+}
+
+/* for url */
 .url-input{
     display: flex;
     align-items:center;
@@ -28,22 +44,15 @@
     width: 95%;
     margin-right: 0.5rem;
 }
-
 .deleteImage:hover, 
-.deleteVideo:hover,
-.addImage:hover,
-.addVideo:hover{
+.deleteVideo:hover{
     color: red;
     cursor: pointer;
     scale: 1.2;
 }
-.button-layout{
-    display: flex;
-    justify-content: end;
+.addImage:hover,
+.addVideo:hover{
+    color: rgb(255, 132, 0);
+    cursor: pointer;
+    scale: 1.2;
 }
-.button-style{
-    color:#4c3d81;
-    margin-left: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-

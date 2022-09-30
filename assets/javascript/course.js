@@ -1,27 +1,32 @@
 $(document).ready(()=>{
     // show adding new course
     $('.adding-block').css('display', 'block')
+
     // get subject from db
     db.ref('subject').get().then((snapshot)=>{
-        for(let [key, value] of Object.entries(snapshot.val())){
-            // console.log(key)
-            // console.log(value.name)
-            $option = $(`<option value=${key}>${value.name}</option>`)
-            $('#course-subject').append($option)
+        if(snapshot.val()!=null){
+            for(let [key, value] of Object.entries(snapshot.val())){
+                // console.log(key)
+                // console.log(value.name)
+                $option = $(`<option value=${key}>${value.name}</option>`)
+                $('#course-subject').append($option)
+            }
         }
     })
 
     // get course name from db
     db.ref("course").get().then((snapshot)=>{
-        for(let [key, value] of Object.entries(snapshot.val())){
-            $option = $(`<option value=${key}>${value.name}</option>`)
-            $('#course-name').append($option)
+        if(snapshot.val()!=null){
+            for(let [key, value] of Object.entries(snapshot.val())){
+                $option = $(`<option value=${key}>${value.name}</option>`)
+                $('.name-dropdown').append($option)
+            }
         }
     })
 
     // add event for course name dropdown
-    $('#course-name').on('change',()=>{
-        let courseID=$("#course-name").val()
+    $('.name-dropdown').on('change',()=>{
+        let courseID=$(".name-dropdown").val()
         if(courseID!=''){
             // hide adding new course
             $('.adding-block').css('display', 'none')
@@ -46,7 +51,7 @@ $(document).ready(()=>{
 
     // add new course
     $('.add-btn').on('click',()=>{
-        let courseName = $('#course-add').val()
+        let courseName = $('.adding-block').find('input').val()
         if(courseName != ''){
             let courseID = getRandomKey()
             db.ref("course")
@@ -61,7 +66,7 @@ $(document).ready(()=>{
 
     // save course infor
     $('#course-save').on('click',()=>{
-        let courseID = $('#course-name').val()
+        let courseID = $('.name-dropdown').val()
         let code = $('#course-code').val()
         let subjectID = $('#course-subject').val()
         let grade = $('#course-grade').val()
@@ -80,7 +85,7 @@ $(document).ready(()=>{
 
     // open the delete modal
     $('#course-delete').on('click', ()=>{
-        let courseID = $('#course-name').val()
+        let courseID = $('.name-dropdown').val()
         if(courseID!=''){
             $("#deleteModal").find(".modal-body").find("p").text("确定删除此课程吗?")
             $("#deleteModal").modal();
@@ -89,7 +94,7 @@ $(document).ready(()=>{
     
     // delete course
     $('#okButton').on('click',()=>{
-        let courseID = $('#course-name').val()
+        let courseID = $('.name-dropdown').val()
         db.ref("course").child(courseID).remove().then(()=>{
             // refresh page
             location.reload();
