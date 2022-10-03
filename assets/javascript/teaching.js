@@ -1,6 +1,8 @@
 $(document).ready(()=>{
     // show adding new course
     $('.adding-block').css('display', 'block')
+    // hide some setting
+    hideShowTeaching('none')
 
     // get teaching name from db
     db.ref("teaching").get().then((snapshot)=>{
@@ -29,8 +31,8 @@ $(document).ready(()=>{
             }
         }
     })
-    // add event for course name dropdown
-    $('.name-dropdown').on('change',()=>{
+    // add event for teaching name dropdown
+    $('.name-dropdown').on('change',(event)=>{
         // empty urls
         $('.post-block').children('.url-input').remove()
         createNewPostUrl()
@@ -39,11 +41,14 @@ $(document).ready(()=>{
         $('.video-block').children('.url-input').remove()
         createNewVideoUrl()
 
-        let teachingID=$(".name-dropdown").val()
+        let teachingID=$(event.target).val()
         if(teachingID!=''){
-            // hide adding new course
+            // hide adding new teaching
             $('.adding-block').css('display', 'none')
-            //get course infor
+            // show some setting
+            hideShowTeaching('block')
+
+            //get teaching infor
             db.ref("teaching").child(teachingID).get().then((snapshot)=>{
                 let teachingInfor = snapshot.val()
                 console.log(teachingInfor)
@@ -56,28 +61,16 @@ $(document).ready(()=>{
                 $("#end-date").val(teachingInfor.endDate)
                 $("#start-time").val(teachingInfor.startTime)
                 $("#end-time").val(teachingInfor.endTime)
-                if (typeof teachingInfor.PostImageUrls != 'undefined'){
-                    showUrls(teachingInfor.PostImageUrls, '.post-block', createNewPostUrl)
-                }
-                if (typeof teachingInfor.imageUrls != 'undefined'){
-                    showUrls(teachingInfor.imageUrls, '.image-block', createNewImageUrl)
-                }
-                if(typeof teachingInfor.videoUrls != 'undefined'){
-                    showUrls(teachingInfor.videoUrls, '.video-block', createNewVideoUrl)
-                }
+                $('.outline-textarea').val(teachingInfor.resourcesInfor)
+                showUrls(teachingInfor.postImageUrls, '.post-block', createNewPostUrl)
+                showUrls(teachingInfor.imageUrls, '.image-block', createNewImageUrl)
+                showUrls(teachingInfor.videoUrls, '.video-block', createNewVideoUrl)
             })
         }else{
-            // show adding new course
+            // show adding new teaching
             $('.adding-block').css('display', 'block')
-            // reset each element
-            $('#course-name').val('')
-            $('#teacher-name').val('')
-            $('#student-count').val('')
-            $('#student-capacity').val('')
-            $("#start-date").val('')
-            $("#end-date").val('')
-            $("#start-time").val('')
-            $("#end-time").val('')
+            // hide some setting
+            hideShowTeaching('none')
         }
     })
     // add new teaching
@@ -97,11 +90,14 @@ $(document).ready(()=>{
                 if(teacherID==''){
                     $('#teacher-name').addClass('border border-danger')
                 }else{
-                    // save into database
+                    // save all information into database
                     let teachingID = getRandomKey()
                     db.ref("teaching")
                     .child(teachingID)
-                    .set({ name: teachingName, courseID: courseID, teacherID: teacherID})
+                    .set({ name: teachingName, courseID: courseID, teacherID: teacherID,
+                        studentCount: '', studentCapacity: '', 
+                        startDate: '', endDate: '', startTime: '', endTime: '',
+                        postImageUrls: [''], resourcesInfor: '', imageUrls: [''], videoUrls: ['']})
                     .then(() => {
                         // refresh page
                         location.reload();
@@ -114,6 +110,8 @@ $(document).ready(()=>{
     // save teaching infor
     $('#save-btn').on('click',()=>{
         let teachingID = $('.name-dropdown').val()
+        let courseID = $('#course-name').val()
+        let teacherID = $('#teacher-name').val()
         let outline = $('.outline-textarea').val()
         let studentCount = $('#student-count').val()
         let studentCapacity = $('#student-capacity').val()
@@ -127,7 +125,7 @@ $(document).ready(()=>{
         let videoUrls = getUrls('.video-block')
 
         db.ref("teaching").child(teachingID)
-        .update({studentCount: studentCount, studentCapacity: studentCapacity, 
+        .update({courseID: courseID, teacherID: teacherID, studentCount: studentCount, studentCapacity: studentCapacity, 
                 startDate: startDate, endDate: endDate, startTime: startTime, endTime: endTime,
                 postImageUrls: postImageUrls, resourcesInfor: outline, imageUrls:imageUrls, videoUrls: videoUrls})
         .then(()=>{

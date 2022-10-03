@@ -45,8 +45,16 @@
               <div class="col-md-4"></div>
               <div class="col-md-4 row-layout">
                 <div class="row">
-                  <div class="col">
+                  <div class="col achievement-name">
                     <label for="">成果名称: </label>
+                    <select class="form-control name-dropdown">
+                      <option value="">选择</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col teaching-name">
+                    <label for="">相关课程: </label>
                     <select class="form-control name-dropdown">
                       <option value="">选择</option>
                     </select>
@@ -71,16 +79,8 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <label for="">相关课程: </label>
-                    <select class="form-control name-dropdown">
-                      <option value="">选择</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <label for="achievement-outline">成果简介:</label>
-                    <textarea rows="8" class="form-control" id="achievement-outline"></textarea>
+                    <label for="">成果简介:</label>
+                    <textarea rows="8" class="form-control outline-textarea"></textarea>
                   </div>
                 </div>
                 <div class="row">
@@ -121,8 +121,8 @@
                 </div> 
                 <div class="row">
                   <div class="col button-layout">
-                    <button class="btn btn-warning button-style" id="teacher-save">保存</button>
-                    <button class="btn btn-warning button-style" id="teacher-delete">删除</button>
+                    <button class="btn btn-warning button-style" id="save-btn">保存</button>
+                    <button class="btn btn-warning button-style" id="delete-btn">删除</button>
                   </div>
                 </div>
               </div>
@@ -133,6 +133,7 @@
 
   <script src="assets/javascript/header.js"></script>
   <script src="assets/javascript/urlUI.js"></script>
+  <script src="assets/javascript/hideShowUI.js"></script>
   <script src="assets/javascript/achievement.js"></script>
   </body>
 </html>

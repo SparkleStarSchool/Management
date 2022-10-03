@@ -1,7 +1,8 @@
 $(document).ready(()=>{
     // show adding new teacher
     $('.adding-block').css('display', 'block')
-
+    hideShowTeacher('none')
+    
     // get teacher name from db
     db.ref("teacher").get().then((snapshot)=>{
         if(snapshot.val()!=null){
@@ -24,11 +25,13 @@ $(document).ready(()=>{
         if(teacherID!=''){
             // hide adding new teacher
             $('.adding-block').css('display', 'none')
+            // show some setting
+            hideShowTeacher('block')
             //get teacher infor
             db.ref("teacher").child(teacherID).get().then((snapshot)=>{
                 let teacherInfor = snapshot.val()
                 console.log(teacherInfor)
-                $('.outline-textarea').val(teacherInfor.outline)
+                $('.outline-textarea').val(teacherInfor.introduction)
 
                 // set image urls and video urls
                 showUrls(teacherInfor.imageUrls, '.image-block', createNewImageUrl)
@@ -37,8 +40,8 @@ $(document).ready(()=>{
         }else{
             // show adding new course
             $('.adding-block').css('display', 'block')
-            // empty outline
-            $('.outline-textarea').val('')
+            // hide some setting
+            hideShowTeaching('none')
         }
     })
 
@@ -49,7 +52,7 @@ $(document).ready(()=>{
             let teacherID = getRandomKey()
             db.ref("teacher")
             .child(teacherID)
-            .set({ name: teacherName})
+            .set({ name: teacherName, introduction: '', imageUrls:[''], videoUrls: ['']})
             .then(() => {
                 // refresh page
                 location.reload();
@@ -64,7 +67,7 @@ $(document).ready(()=>{
         let imageUrls = getUrls('.image-block')
         let videoUrls = getUrls('.video-block')
         
-        db.ref("teacher").child(teacherID).update({outline: outline, imageUrls:imageUrls, videoUrls: videoUrls})
+        db.ref("teacher").child(teacherID).update({introduction: outline, imageUrls:imageUrls, videoUrls: videoUrls})
         .then(()=>{
             // refresh page
             location.reload();
