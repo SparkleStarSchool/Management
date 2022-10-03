@@ -94,16 +94,13 @@ $(document).ready(()=>{
             location.reload();
         })
     })
+
+    // delete
+    $('#ok-btn').on('click',()=>{
+        let achievementID = $('.achievement-name').find('.name-dropdown').val()
+        db.ref("achievement").child(achievementID).remove().then(()=>{
+            // refresh page
+            location.reload();
+        })
+    })
 })
-// generate random key
-const getRandomKey = () => {
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    const length = 28;
-    let randomStr = "";
-    for (let i = 0; i < length; i++) {
-      const randomNum = Math.floor(Math.random() * characters.length);
-      randomStr += characters[randomNum];
-    }
-    return randomStr;
-  };

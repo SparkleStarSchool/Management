@@ -74,37 +74,23 @@ $(document).ready(()=>{
         })
     })
 
-    // check if need to delete teaching before delete course
-
-    // open the delete modal
-    $('#delete-btn').on('click', ()=>{
-        let teacherID = $('.name-dropdown').val()
-        if(teacherID!=''){
-            $("#deleteModal").find(".modal-body").find("p").text("确定删除吗?")
-            $("#deleteModal").modal();
-        }
-    })
-    
     // delete teacher
-    $('#okButton').on('click',()=>{
+    $('#ok-btn').on('click',()=>{
         let teacherID = $('.name-dropdown').val()
-        db.ref("teacher").child(teacherID).remove().then(()=>{
-            // refresh page
-            location.reload();
+        // find if there is teaching attached this teacherID
+        db.ref('teaching').orderByChild('teacherID').equalTo(teacherID).on('value', (snapshot)=>{
+            console.log(snapshot.val())
+            if(snapshot.val()==null){
+                // delete 
+                db.ref("teacher").child(teacherID).remove().then(()=>{
+                    // refresh page
+                    location.reload();
+                })
+            }else{
+                // show another modal to tell can not delete
+                $("#warningModal").find(".modal-body").find("p").text("请先删除此教师所开课程！")
+                $("#warningModal").modal()
+            }
         })
     })
-
 })
-
-// generate random key
-const getRandomKey = () => {
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    const length = 28;
-    let randomStr = "";
-    for (let i = 0; i < length; i++) {
-      const randomNum = Math.floor(Math.random() * characters.length);
-      randomStr += characters[randomNum];
-    }
-    return randomStr;
-  };

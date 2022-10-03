@@ -19,28 +19,13 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>     
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-    <script src="assets/javascript/firebase.js"></script>
+    <script src="assets/javascript/module/firebase.js"></script>
 
     <title>课程设置-SSBS</title>
   </head>
   <body>
     <main>
         <div class="container-fluid layout">
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                    <img id="titleImage" src="assets/images/logo.png" alt="">
-                    <p id="title">启明双语学校</p>
-                    <div class="row hello">
-                        <p></p>
-                        <div>
-                          <button id="home">主页</button>
-                          <button id="logout">退出</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4"></div>
-            </div>
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4 row-layout">
@@ -102,42 +87,27 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <label for="course-outline">课程大纲:</label>
-                    <textarea rows="8" class="form-control" id="course-outline"></textarea>
+                    <label for="">课程大纲:</label>
+                    <textarea rows="8" class="form-control outline-textarea"></textarea>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col button-layout">
-                    <button class="btn btn-warning button-style" id="course-save">保存</button>
-                    <button class="btn btn-warning button-style" id="course-delete">删除</button>
+                    <button class="btn btn-warning button-style" id="save-btn">保存</button>
+                    <button class="btn btn-warning button-style" id="delete-btn">删除</button>
                   </div>
                 </div>
               </div>
               <div class="col-md-4"></div>
             </div>
         </div>
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" data-backdrop="static">
-          <div class="modal-dialog modal-sm" role="document">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title"></h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <p></p>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-warning" data-dismiss="modal" id="okButton">确定</button>
-                      <button type="button" class="btn btn-warning" data-dismiss="modal">取消</button>
-                  </div>
-              </div>
-          </div>
-        </div> 
+        
     </main>
-
+  <script src="assets/javascript/module/header.js"></script>
+  <script src="assets/javascript/module/deleteModal.js"></script>
+  <script src="assets/javascript/module/hideShowUI.js"></script>
+  <script src="assets/javascript/module/DB.js"></script>
   <script src="assets/javascript/course.js"></script>
-  <script src="assets/javascript/header.js"></script>
+  
   </body>
 </html>

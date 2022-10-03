@@ -28,3 +28,14 @@ const hideShowAchievement = (hideShow)=>{
     $('#save-btn').css('display', hideShow)
     $('#delete-btn').css('display', hideShow)
 }
+
+const hideShowCourse = (hideShow)=>{
+    $('#course-code').parent().css('display', hideShow)
+    $('#course-grade').parent().css('display', hideShow)
+    $('#course-subject').parent().css('display', hideShow)
+    $('.outline-textarea').parent().css('display', hideShow)
+    $('#save-btn').css('display', hideShow)
+    $('#delete-btn').css('display', hideShow)
+}
+
+

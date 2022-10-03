@@ -133,17 +133,24 @@ $(document).ready(()=>{
             location.reload();
         })
     })
+    
+    // delete
+    $('#ok-btn').on('click',()=>{
+        let teachingID = $('.name-dropdown').val()
+        // find if there is achievement attached this teachingID
+        db.ref('achievement').orderByChild('teachingID').equalTo(teachingID).on('value', (snapshot)=>{
+            console.log(snapshot.val())
+            if(snapshot.val()==null){
+                // delete 
+                db.ref("teaching").child(teachingID).remove().then(()=>{
+                    // refresh page
+                    location.reload();
+                })
+            }else{
+                // show another modal to tell can not delete
+                $("#warningModal").find(".modal-body").find("p").text("请先删除成果！")
+                $("#warningModal").modal()
+            }
+        })
+    })
 })
-
-// generate random key
-const getRandomKey = () => {
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    const length = 28;
-    let randomStr = "";
-    for (let i = 0; i < length; i++) {
-      const randomNum = Math.floor(Math.random() * characters.length);
-      randomStr += characters[randomNum];
-    }
-    return randomStr;
-  };

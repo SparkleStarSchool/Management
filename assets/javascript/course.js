@@ -1,7 +1,8 @@
 $(document).ready(()=>{
     // show adding new course
     $('.adding-block').css('display', 'block')
-
+    // hide some setting
+    hideShowCourse('none')
     // get subject from db
     db.ref('subject').get().then((snapshot)=>{
         if(snapshot.val()!=null){
@@ -30,6 +31,8 @@ $(document).ready(()=>{
         if(courseID!=''){
             // hide adding new course
             $('.adding-block').css('display', 'none')
+            // show some setting
+            hideShowCourse('block')
             //get course infor
             db.ref("course").child(courseID).get().then((snapshot)=>{
                 let courseInfor = snapshot.val()
@@ -37,15 +40,13 @@ $(document).ready(()=>{
                 $('#course-code').val(courseInfor.code)
                 $('#course-subject').val(courseInfor.subjectID)
                 $('#course-grade').val(courseInfor.grade)
-                $('#course-outline').val(courseInfor.outline)
+                $('.outline-textarea').val(courseInfor.outline)
             })
         }else{
             // show adding new course
             $('.adding-block').css('display', 'block')
-            $('#course-code').val('')
-            $('#course-subject').val('')
-            $('#course-grade').val('')
-            $('#course-outline').val('')
+            // hide some setting
+            hideShowCourse('none')
         }
     })
 
@@ -70,7 +71,7 @@ $(document).ready(()=>{
         let code = $('#course-code').val()
         let subjectID = $('#course-subject').val()
         let grade = $('#course-grade').val()
-        let outline = $('#course-outline').val()
+        let outline = $('.outline-textarea').val()
         db.ref("course").child(courseID).update({code: code, 
                                                  outline: outline, 
                                                  grade: grade, 
@@ -80,38 +81,24 @@ $(document).ready(()=>{
             location.reload();
         })
     })
-
-    // check if need to delete teaching before delete course
-
-    // open the delete modal
-    $('#course-delete').on('click', ()=>{
-        let courseID = $('.name-dropdown').val()
-        if(courseID!=''){
-            $("#deleteModal").find(".modal-body").find("p").text("确定删除此课程吗?")
-            $("#deleteModal").modal();
-        }
-    })
     
-    // delete course
-    $('#okButton').on('click',()=>{
+    // delete teacher
+    $('#ok-btn').on('click',()=>{
         let courseID = $('.name-dropdown').val()
-        db.ref("course").child(courseID).remove().then(()=>{
-            // refresh page
-            location.reload();
+        // find if there is teaching attached this teacherID
+        db.ref('teaching').orderByChild('courseID').equalTo(courseID).on('value', (snapshot)=>{
+            console.log(snapshot.val())
+            if(snapshot.val()==null){
+                // delete 
+                db.ref("course").child(courseID).remove().then(()=>{
+                    // refresh page
+                    location.reload();
+                })
+            }else{
+                // show another modal to tell can not delete
+                $("#warningModal").find(".modal-body").find("p").text("请先删除与此课程相关的开课！")
+                $("#warningModal").modal()
+            }
         })
     })
-
 })
-
-// generate random key
-const getRandomKey = () => {
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    const length = 28;
-    let randomStr = "";
-    for (let i = 0; i < length; i++) {
-      const randomNum = Math.floor(Math.random() * characters.length);
-      randomStr += characters[randomNum];
-    }
-    return randomStr;
-  };
