@@ -5,6 +5,7 @@ const hideShowTeaching = (hideShow)=>{
     $('#end-date').parent().css('display', hideShow)
     $('#start-time').parent().css('display', hideShow)
     $('#end-time').parent().css('display', hideShow)
+    $('.resource-textarea').parent().css('display', hideShow)
     $('.outline-textarea').parent().css('display', hideShow)
     $('.post-block').css('display', hideShow)
     $('.image-block').css('display', hideShow)

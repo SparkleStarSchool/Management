@@ -66,8 +66,8 @@ $(document).ready(()=>{
         let outline = $('.outline-textarea').val()
         let imageUrls = getUrls('.image-block')
         let videoUrls = getUrls('.video-block')
-        
-        db.ref("teacher").child(teacherID).update({introduction: outline, imageUrls:imageUrls, videoUrls: videoUrls})
+        // do not need validation here
+        db.ref("teacher").child(teacherID).update({outline: outline, imageUrls:imageUrls, videoUrls: videoUrls})
         .then(()=>{
             // refresh page
             location.reload();
@@ -75,11 +75,10 @@ $(document).ready(()=>{
     })
 
     // delete teacher
-    $('#ok-btn').on('click',()=>{
+    $('#deleteModal #ok-btn').on('click',()=>{
         let teacherID = $('.name-dropdown').val()
         // find if there is teaching attached this teacherID
         db.ref('teaching').orderByChild('teacherID').equalTo(teacherID).on('value', (snapshot)=>{
-            console.log(snapshot.val())
             if(snapshot.val()==null){
                 // delete 
                 db.ref("teacher").child(teacherID).remove().then(()=>{

@@ -96,7 +96,7 @@ $(document).ready(()=>{
     })
 
     // delete
-    $('#ok-btn').on('click',()=>{
+    $('#deleteModal #ok-btn').on('click',()=>{
         let achievementID = $('.achievement-name').find('.name-dropdown').val()
         db.ref("achievement").child(achievementID).remove().then(()=>{
             // refresh page

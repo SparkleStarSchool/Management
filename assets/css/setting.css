@@ -28,10 +28,6 @@
     margin-left: 1.5rem;
     margin-bottom: 1.5rem;
 }
-.warningborder{
-    outline: none;
-    border: 1rem, solid red;
-}
 
 /* for url */
 .url-input{
@@ -55,4 +51,24 @@
     color: rgb(255, 132, 0);
     cursor: pointer;
     scale: 1.2;
+}
+/* for grade checkbox in course page */
+.grade-style{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.grade-style div{
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+}
+.grade-style label{
+    margin-right: 0.5rem;
+}
+.grade-style input{
+    accent-color:#4c3d81; 
+}
+input[type=checkbox] {
+    transform: scale(1.2);
 }

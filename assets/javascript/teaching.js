@@ -8,7 +8,7 @@ $(document).ready(()=>{
     db.ref("teaching").get().then((snapshot)=>{
         if(snapshot.val()!=null){
             for(let [key, value] of Object.entries(snapshot.val())){
-                $option = $(`<option value=${key}>${value.name}</option>`)
+                let $option = $(`<option value=${key}>${value.name}</option>`)
                 $('.name-dropdown').append($option)
             }
         }
@@ -17,8 +17,11 @@ $(document).ready(()=>{
     db.ref("course").get().then((snapshot)=>{
         if(snapshot.val()!=null){
             for(let [key, value] of Object.entries(snapshot.val())){
-                $option = $(`<option value=${key}>${value.name}</option>`)
-                $('#course-name').append($option)
+                // add course only if there is all information of course
+                if(value.code != '' && value.subjectID != ''&&value.grade[0]!=''){
+                    let $option = $(`<option value=${key}>${value.name}</option>`)
+                    $('#course-name').append($option)
+                }
             }
         }
     })
@@ -61,7 +64,8 @@ $(document).ready(()=>{
                 $("#end-date").val(teachingInfor.endDate)
                 $("#start-time").val(teachingInfor.startTime)
                 $("#end-time").val(teachingInfor.endTime)
-                $('.outline-textarea').val(teachingInfor.resourcesInfor)
+                $('.resource-textarea').val(teachingInfor.resourcesInfor)
+                $('.outline-textarea').val(teachingInfor.outline)
                 showUrls(teachingInfor.postImageUrls, '.post-block', createNewPostUrl)
                 showUrls(teachingInfor.imageUrls, '.image-block', createNewImageUrl)
                 showUrls(teachingInfor.videoUrls, '.video-block', createNewVideoUrl)
@@ -96,7 +100,7 @@ $(document).ready(()=>{
                     .child(teachingID)
                     .set({ name: teachingName, courseID: courseID, teacherID: teacherID,
                         studentCount: '', studentCapacity: '', 
-                        startDate: '', endDate: '', startTime: '', endTime: '',
+                        startDate: '', endDate: '', startTime: '', endTime: '', outline:'',
                         postImageUrls: [''], resourcesInfor: '', imageUrls: [''], videoUrls: ['']})
                     .then(() => {
                         // refresh page
@@ -119,23 +123,23 @@ $(document).ready(()=>{
         let endDate = $('#end-date').val()
         let startTime = $('#start-time').val()
         let endTime = $('#end-time').val()
-
+        let resourcesInfor = $('.resource-textarea').val()
         let postImageUrls = getUrls('.post-block')
         let imageUrls = getUrls('.image-block')
         let videoUrls = getUrls('.video-block')
 
         db.ref("teaching").child(teachingID)
         .update({courseID: courseID, teacherID: teacherID, studentCount: studentCount, studentCapacity: studentCapacity, 
-                startDate: startDate, endDate: endDate, startTime: startTime, endTime: endTime,
-                postImageUrls: postImageUrls, resourcesInfor: outline, imageUrls:imageUrls, videoUrls: videoUrls})
+                startDate: startDate, endDate: endDate, startTime: startTime, endTime: endTime, outline: outline,
+                postImageUrls: postImageUrls, resourcesInfor: resourcesInfor, imageUrls:imageUrls, videoUrls: videoUrls})
         .then(()=>{
             // refresh page
             location.reload();
         })
     })
-    
+
     // delete
-    $('#ok-btn').on('click',()=>{
+    $('#deleteModal #ok-btn').on('click',()=>{
         let teachingID = $('.name-dropdown').val()
         // find if there is achievement attached this teachingID
         db.ref('achievement').orderByChild('teachingID').equalTo(teachingID).on('value', (snapshot)=>{

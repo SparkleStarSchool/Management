@@ -55,30 +55,11 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-lg-4">
+                  <div class="col-lg-6">
                     <label for="course-code">课程编码:</label>
                     <input type="text" class="form-control" id="course-code">
                   </div>
-                  <div class="col-lg-4">
-                    <label for="course-grade">适用年级: </label>
-                    <select class="form-control" id="course-grade">
-                      <option value="">选择</option>
-                      <option value="K">K</option>
-                      <option value="G1">G1</option>
-                      <option value="G2">G2</option>
-                      <option value="G3">G3</option>
-                      <option value="G4">G4</option>
-                      <option value="G5">G5</option>
-                      <option value="G6">G6</option>
-                      <option value="G7">G7</option>
-                      <option value="G8">G8</option>
-                      <option value="G9">G9</option>
-                      <option value="G10">G10</option>
-                      <option value="G11">G11</option>
-                      <option value="G12">G12</option>
-                    </select>
-                  </div>
-                  <div class="col-lg-4">
+                  <div class="col-lg-6">
                     <label for="course-subject">所属科目: </label>
                     <select class="form-control" id="course-subject">
                       <option value="">选择</option>
@@ -87,8 +68,63 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <label for="">课程大纲:</label>
-                    <textarea rows="8" class="form-control outline-textarea"></textarea>
+                    <label for="" id="course-grade">适用年级: </label>
+                    <div class="row">
+                      <div class="col grade-style">
+                        <div>
+                          <input type="checkbox" name="interest" value="K" />
+                          <label for="">K or under</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" name="interest" value="G1" />
+                          <label for="">G1</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" name="interest" value="G2" />
+                          <label for="">G2</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" name="interest" value="G3" />
+                          <label for="">G3</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" name="interest" value="G4" />
+                          <label for="">G4</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" name="interest" value="G5" />
+                          <label for="">G5</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" name="interest" value="G6" />
+                          <label for="">G6</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" name="interest" value="G7" />
+                          <label for="">G7</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" name="interest" value="G8" />
+                          <label for="">G8</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" name="interest" value="G9" />
+                          <label for="">G9</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" name="interest" value="G10" />
+                          <label for="">G10</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" name="interest" value="G11" />
+                          <label for="">G11</label>
+                        </div>
+                        <div>
+                          <input type="checkbox" name="interest" value="G12" />
+                          <label for="">G12</label>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="row">
@@ -104,7 +140,7 @@
         
     </main>
   <script src="assets/javascript/module/header.js"></script>
-  <script src="assets/javascript/module/deleteModal.js"></script>
+  <script src="assets/javascript/module/modal.js"></script>
   <script src="assets/javascript/module/hideShowUI.js"></script>
   <script src="assets/javascript/module/DB.js"></script>
   <script src="assets/javascript/course.js"></script>

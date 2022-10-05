@@ -1,4 +1,24 @@
 $(document).ready(()=>{
+    let $saveModal = $(`<div class="modal fade" id="saveModal" tabindex="-1" role="dialog" data-backdrop="static">
+                            <div class="modal-dialog modal-sm" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>信息不完整，确定保存吗？</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-warning" data-dismiss="modal" id="ok-btn">确定</button>
+                                        <button type="button" class="btn btn-warning" data-dismiss="modal">取消</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> `)
+    $('main').append($saveModal)
     let $deleteModal = $(`<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" data-backdrop="static">
                             <div class="modal-dialog modal-sm" role="document">
                                 <div class="modal-content">

@@ -7,9 +7,7 @@ $(document).ready(()=>{
     db.ref('subject').get().then((snapshot)=>{
         if(snapshot.val()!=null){
             for(let [key, value] of Object.entries(snapshot.val())){
-                // console.log(key)
-                // console.log(value.name)
-                $option = $(`<option value=${key}>${value.name}</option>`)
+                let $option = $(`<option value=${key}>${value.name}</option>`)
                 $('#course-subject').append($option)
             }
         }
@@ -19,7 +17,7 @@ $(document).ready(()=>{
     db.ref("course").get().then((snapshot)=>{
         if(snapshot.val()!=null){
             for(let [key, value] of Object.entries(snapshot.val())){
-                $option = $(`<option value=${key}>${value.name}</option>`)
+                let $option = $(`<option value=${key}>${value.name}</option>`)
                 $('.name-dropdown').append($option)
             }
         }
@@ -36,11 +34,13 @@ $(document).ready(()=>{
             //get course infor
             db.ref("course").child(courseID).get().then((snapshot)=>{
                 let courseInfor = snapshot.val()
-                console.log(courseInfor)
                 $('#course-code').val(courseInfor.code)
                 $('#course-subject').val(courseInfor.subjectID)
-                $('#course-grade').val(courseInfor.grade)
-                $('.outline-textarea').val(courseInfor.outline)
+                // get the grade
+                $('input[type=checkbox]').each(function(){
+                    if(courseInfor.grade.includes($(this).val()))
+                    $(this).attr('checked', true)
+                })
             })
         }else{
             // show adding new course
@@ -57,7 +57,7 @@ $(document).ready(()=>{
             let courseID = getRandomKey()
             db.ref("course")
             .child(courseID)
-            .set({ name: courseName})
+            .set({ name: courseName, code:'', subjectID:'', grade:['']})
             .then(() => {
                 // refresh page
                 location.reload();
@@ -66,28 +66,35 @@ $(document).ready(()=>{
     })
 
     // save course infor
-    $('#course-save').on('click',()=>{
+    $('#save-btn').on('click',()=>{
         let courseID = $('.name-dropdown').val()
-        let code = $('#course-code').val()
-        let subjectID = $('#course-subject').val()
-        let grade = $('#course-grade').val()
-        let outline = $('.outline-textarea').val()
-        db.ref("course").child(courseID).update({code: code, 
-                                                 outline: outline, 
-                                                 grade: grade, 
-                                                 subjectID: subjectID})
+        let data = getDataFromDOM()
+        if(data.code==''||data.subjectID==''||data.grade[0] == ''){
+            // show modal
+            $("#saveModal").modal();
+        }else{
+            db.ref("course").child(courseID).update(data)
+            .then(()=>{
+                // refresh page
+                location.reload();
+            })
+        }   
+    })
+    // save modal (save data even if some infor is missing)
+    $('#saveModal #ok-btn').on('click',()=>{
+        let courseID = $('.name-dropdown').val()
+        let data = getDataFromDOM()
+        db.ref("course").child(courseID).update(data)
         .then(()=>{
             // refresh page
             location.reload();
         })
     })
-    
-    // delete teacher
-    $('#ok-btn').on('click',()=>{
+    // delete course
+    $('#deleteModal #ok-btn').on('click',()=>{
         let courseID = $('.name-dropdown').val()
         // find if there is teaching attached this teacherID
         db.ref('teaching').orderByChild('courseID').equalTo(courseID).on('value', (snapshot)=>{
-            console.log(snapshot.val())
             if(snapshot.val()==null){
                 // delete 
                 db.ref("course").child(courseID).remove().then(()=>{
@@ -102,3 +109,20 @@ $(document).ready(()=>{
         })
     })
 })
+
+const getDataFromDOM = ()=>{
+    let code = $('#course-code').val()
+    let subjectID = $('#course-subject').val()
+    let grade = []
+    $('input[type=checkbox]').each(function(){
+        if($(this).is(":checked")){
+            grade.push($(this).val())
+        }
+    })
+    if(grade.length == 0){
+        grade = ['']
+    }
+    return {code: code, 
+            grade: grade, 
+            subjectID: subjectID}
+}
