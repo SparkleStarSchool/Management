@@ -1,0 +1,64 @@
+$(document).ready(()=>{
+  // get the date of today
+  let nowDate = getCurrentTime().split('T')[0]
+  // get infor from database to create time table
+  let result = []
+  db.ref('teaching').get().then((snapshot)=>{
+    if(snapshot.val()!=null){
+      for(let [key, value] of Object.entries(snapshot.val())){
+        if(nowDate > value.startDate && nowDate < value.endDate){
+          let color = Number(value.studentCapacity) - Number(value.studentCount)
+          result.push({startTime: value.startTime, endTime: value.endTime, 
+                       startDate: value.startDate, endDate: value.endDate,
+                       name:value.name, color: color})
+          
+        }
+      }
+      result.sort((a, b) => {
+        return a.startTime > b.startTime ? 1: -1
+      })
+      result.forEach((item)=>{
+        let theDate = getTheDay(item.startDate)
+        let $text = $(`<li>
+                      <p>${item.startTime}-${item.endTime}</p>
+                      <p>${item.name}</p>
+                    </li>`)
+        // set color for not empty class
+        if(item.color>0){
+          $text.find('p').css('color', 'rgb(255, 132, 0)')
+          $text.addClass('colorStyle')
+          // $text.append("<style>li::marker{color:rgb(255, 132, 0)}</style>");
+        }
+        $($('.table-layout .card')[theDate]).find('ul').append($text)
+      })
+    }
+  })
+})
+
+const formatTime = (time) => {
+  return time < 10 ? "0" + time.toString() : time.toString();
+};
+const getCurrentTime = () => {
+  let current = new Date();
+  let year = current.getFullYear().toString();
+  let month = formatTime(current.getMonth() + 1);
+  let date = formatTime(current.getDate());
+  let hour = formatTime(current.getHours());
+  let minute = formatTime(current.getMinutes());
+  let currentTime = year + "-" + month + "-" + date + "T" + hour + ":" + minute;
+  return currentTime;
+};
+const getTheDay = (startDate)=>{
+  let parts = startDate.split('-')
+  let year = parseInt(parts[0], 10)
+  let month = parseInt(parts[1], 10) - 1
+  let day = parseInt(parts[2], 10)
+  let date = new Date(year, month, day)
+  let theDate = date.getDay();
+  if(theDate==0){
+    theDate = 6
+  }else{
+    theDate = theDate -1
+  }
+  return theDate
+}

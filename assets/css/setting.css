@@ -72,3 +72,20 @@
 input[type=checkbox] {
     transform: scale(1.2);
 }
+/* time table */
+.table-layout p{
+    margin: 0;
+}
+.table-layout li{
+    margin-bottom: 0.7rem;
+}
+.table-layout ul{
+    padding: 0;
+}
+.card-body{
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+.colorStyle{
+    color:rgb(255, 132, 0);
+}
