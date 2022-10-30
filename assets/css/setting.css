@@ -73,6 +73,15 @@ input[type=checkbox] {
     transform: scale(1.2);
 }
 /* time table */
+ul li{
+    list-style-position: inside;
+}
+.colorStyle::marker{
+    /* margin-right: 0 !important; */
+}
+.table-layout{
+    border: 2px, solid, rgb(76, 61, 129);
+}
 .table-layout p{
     margin: 0;
 }
@@ -83,9 +92,27 @@ input[type=checkbox] {
     padding: 0;
 }
 .card-body{
-    padding-left: 5rem;
-    padding-right: 5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 .colorStyle{
     color:rgb(255, 132, 0);
+}
+.card-title{
+    background-color: rgba(76, 61, 129, 0.345);
+}
+.scan-block p{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+/* .note-block{
+    display: flex;
+    flex-direction: column;
+    justify-content:start;
+} */
+.li-layout{
+    margin-bottom: 0 !important;
+}
+.li-layout::marker{
+    /* color:white; */
 }

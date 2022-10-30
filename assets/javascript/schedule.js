@@ -6,6 +6,17 @@ $(document).ready(()=>{
   db.ref('teaching').get().then((snapshot)=>{
     if(snapshot.val()!=null){
       for(let [key, value] of Object.entries(snapshot.val())){
+        // add coming class
+        if(value.startDate==''){
+          $textForComing = $(`<li class='li-layout'>${value.name}</li>`)
+          // $($($('.table-layout').find('.card-body')[7]).find('ul').find('li')[1]).append($textForComing)
+          // let html = $($($('.table-layout').find('.card-body')[7]).find('ul').find('li')[1]).html()
+          // html = html + `<br>${value.name}`
+          // console.log(html)
+          // $($($('.table-layout').find('.card-body')[7]).find('ul').find('li')[1]).html(html)
+          // console.log($($($('.table-layout').find('.card-body')[7]).find('ul').find('li')[1]).html())
+          $($('.table-layout').find('.card-body')[7]).find('ul').append($textForComing)
+        }
         if(nowDate > value.startDate && nowDate < value.endDate){
           let color = Number(value.studentCapacity) - Number(value.studentCount)
           result.push({startTime: value.startTime, endTime: value.endTime, 
@@ -20,8 +31,7 @@ $(document).ready(()=>{
       result.forEach((item)=>{
         let theDate = getTheDay(item.startDate)
         let $text = $(`<li>
-                      <p>${item.startTime}-${item.endTime}</p>
-                      <p>${item.name}</p>
+                      ${item.startTime}-${item.endTime} ${item.name}
                     </li>`)
         // set color for not empty class
         if(item.color>0){

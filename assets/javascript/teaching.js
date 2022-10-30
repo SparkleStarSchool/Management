@@ -73,6 +73,9 @@ $(document).ready(()=>{
         }else{
             // show adding new teaching
             $('.adding-block').css('display', 'block')
+            // empty teacher name and course name
+            $('#course-name').val('')
+            $('#teacher-name').val('')
             // hide some setting
             hideShowTeaching('none')
         }
