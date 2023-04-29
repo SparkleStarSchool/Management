@@ -40,12 +40,14 @@
     width: 95%;
     margin-right: 0.5rem;
 }
+.deletePost:hover,
 .deleteImage:hover, 
 .deleteVideo:hover{
     color: red;
     cursor: pointer;
     scale: 1.2;
 }
+.addPost:hover,
 .addImage:hover,
 .addVideo:hover{
     color: rgb(255, 132, 0);
