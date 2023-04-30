@@ -89,15 +89,54 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-lg-6">
-                    <label for="">上课时间: </label>
-                    <input type="time" class="form-control" id="start-time">
-                  </div>
-                  <div class="col-lg-6">
-                    <label for="">下课时间: </label>
-                    <input type="time" class="form-control" id="end-time">
+                  <div class="col time-block">
+                    <label for="">课程时间:</label>
+                    <div class="time-input">
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <label for="">选择: </label>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-trash deleteTime" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                          </svg>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <label for="day">星期:</label>
+                          <select class="form-control">
+                            <option value="">选择</option>
+                            <option value="Monday">星期一</option>
+                            <option value="Tuesday">星期二</option>
+                            <option value="Wednesday">星期三</option>
+                            <option value="Thursday">星期四</option>
+                            <option value="Friday">星期五</option>
+                            <option value="Saturday">星期六</option>
+                            <option value="Sunday">星期日</option>
+                          </select>
+                        </div>
+                      </div>
+                      
+                      <div class="row" style="margin-top: 0.5em;">
+                        <div class="col-lg-6">
+                          <label for="">上课: </label>
+                          <input type="time" class="form-control">
+                        </div>
+                        <div class="col-lg-6">
+                          <label for="">下课: </label>
+                          <input type="time" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="addTime-block">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle addTime" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                      </svg>
+                    </div>
                   </div>
                 </div>
+                
                 <div class="row">
                   <div class="col">
                     <label for="">课程大纲:</label>

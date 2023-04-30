@@ -10,6 +10,7 @@ const hideShowTeaching = (hideShow)=>{
     $('.post-block').css('display', hideShow)
     $('.image-block').css('display', hideShow)
     $('.video-block').css('display', hideShow)
+    $('.time-block').css('display', hideShow)
     $('#save-btn').css('display', hideShow)
     $('#delete-btn').css('display', hideShow)
 }

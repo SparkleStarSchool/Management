@@ -43,6 +43,8 @@ $(document).ready(()=>{
         createNewImageUrl()
         $('.video-block').children('.url-input').remove()
         createNewVideoUrl()
+        $('.time-block').children('.time-input').remove()
+        createNewTimeSection()
 
         let teachingID=$(event.target).val()
         if(teachingID!=''){
@@ -62,8 +64,11 @@ $(document).ready(()=>{
                 $('#student-capacity').val(teachingInfor.studentCapacity)
                 $("#start-date").val(teachingInfor.startDate)
                 $("#end-date").val(teachingInfor.endDate)
-                $("#start-time").val(teachingInfor.startTime)
-                $("#end-time").val(teachingInfor.endTime)
+
+
+
+                showTime(teachingInfor.courseTime)
+                
                 $('.resource-textarea').val(teachingInfor.resourcesInfor)
                 $('.outline-textarea').val(teachingInfor.outline)
                 showUrls(teachingInfor.postImageUrls, '.post-block', createNewPostUrl)
@@ -103,7 +108,7 @@ $(document).ready(()=>{
                     .child(teachingID)
                     .set({ name: teachingName, courseID: courseID, teacherID: teacherID,
                         studentCount: '', studentCapacity: '', 
-                        startDate: '', endDate: '', startTime: '', endTime: '', outline:'',
+                        startDate: '', endDate: '', courseTime: [''], outline:'',
                         postImageUrls: [''], resourcesInfor: '', imageUrls: [''], videoUrls: ['']})
                     .then(() => {
                         // refresh page
@@ -124,8 +129,7 @@ $(document).ready(()=>{
         let studentCapacity = $('#student-capacity').val()
         let startDate = $('#start-date').val()
         let endDate = $('#end-date').val()
-        let startTime = $('#start-time').val()
-        let endTime = $('#end-time').val()
+        let courseTime = getTime()
         let resourcesInfor = $('.resource-textarea').val()
         let postImageUrls = getUrls('.post-block')
         let imageUrls = getUrls('.image-block')
@@ -133,7 +137,7 @@ $(document).ready(()=>{
 
         db.ref("teaching").child(teachingID)
         .update({courseID: courseID, teacherID: teacherID, studentCount: studentCount, studentCapacity: studentCapacity, 
-                startDate: startDate, endDate: endDate, startTime: startTime, endTime: endTime, outline: outline,
+                startDate: startDate, endDate: endDate, courseTime: courseTime, outline: outline,
                 postImageUrls: postImageUrls, resourcesInfor: resourcesInfor, imageUrls:imageUrls, videoUrls: videoUrls})
         .then(()=>{
             // refresh page

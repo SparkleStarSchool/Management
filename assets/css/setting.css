@@ -29,7 +29,13 @@
     margin-bottom: 1.5rem;
 }
 
-/* for url */
+/* for url and time*/
+.time-input{
+    margin-bottom: 0.5rem;
+    border: solid 1px lightgrey;
+    border-radius: 2px;
+    padding: 0.5em;
+}
 .url-input{
     display: flex;
     align-items:center;
@@ -40,6 +46,7 @@
     width: 95%;
     margin-right: 0.5rem;
 }
+.deleteTime:hover,
 .deletePost:hover,
 .deleteImage:hover, 
 .deleteVideo:hover{
@@ -47,6 +54,7 @@
     cursor: pointer;
     scale: 1.2;
 }
+.addTime:hover,
 .addPost:hover,
 .addImage:hover,
 .addVideo:hover{
