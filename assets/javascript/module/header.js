@@ -7,7 +7,7 @@ $(document).ready(()=>{
                         <div class="col-md-4"></div>
                         <div class="col-md-4">
                             <img id="titleImage" src="assets/images/logo.png" alt="">
-                            <p id="title">启明双语学校</p>
+                            <p id="title">启明国际教育</p>
                             <div class="row hello">
                                 <p>Hi, ${userName}</p>
                                 <div>

@@ -126,8 +126,7 @@ const getTime = ()=>{
 }
 
 const showTime = (courseTimeList)=>{
-    console.log(courseTimeList.length)
-    for(let i=0; i<courseTimeList.length-2; i++){
+    for(let i=0; i<courseTimeList.length; i++){
         if (i==0){
             $('.time-block').find('select').val(courseTimeList[i].day)
             $($('.time-block').find('input')[0]).val(courseTimeList[i].startTime)

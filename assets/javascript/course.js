@@ -29,6 +29,12 @@ $(document).ready(()=>{
         if(courseID!=''){
             // hide adding new course
             $('.adding-block').css('display', 'none')
+            // empty check box
+            $('.grade-style').find('input').each(function(element){
+                // console.log(element)
+                $(this).prop('checked', false)
+            })
+
             // show some setting
             hideShowCourse('block')
             //get course infor
@@ -38,8 +44,9 @@ $(document).ready(()=>{
                 $('#course-subject').val(courseInfor.subjectID)
                 // get the grade
                 $('input[type=checkbox]').each(function(){
-                    if(courseInfor.grade.includes($(this).val()))
-                    $(this).attr('checked', true)
+                    if(courseInfor.grade.includes($(this).val())){
+                        $(this).prop('checked', true)
+                    }
                 })
             })
         }else{

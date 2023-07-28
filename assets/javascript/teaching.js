@@ -65,8 +65,8 @@ $(document).ready(()=>{
                 $("#start-date").val(teachingInfor.startDate)
                 $("#end-date").val(teachingInfor.endDate)
 
-
-
+                console.log(teachingInfor.courseTime)
+                // show time
                 showTime(teachingInfor.courseTime)
                 
                 $('.resource-textarea').val(teachingInfor.resourcesInfor)
